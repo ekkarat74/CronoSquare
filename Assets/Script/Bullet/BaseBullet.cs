@@ -32,11 +32,10 @@ public class BaseBullet : MonoBehaviour
             // ถ้าเป็น Enemy หรือ BulletEnemy ให้ข้ามไปไม่ทำอะไร (ทะลุผ่าน)
             return;
         }
-        else if(collision.CompareTag("Clear"))
+        if(collision.CompareTag("Clear"))
         {
             Destroy(gameObject);
         }
-
 
         // ตรวจสอบว่า Tag ที่ชนคือ Player หรือไม่
         if (collision.CompareTag("Player"))

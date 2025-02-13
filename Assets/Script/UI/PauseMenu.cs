@@ -1,13 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement; // Include this namespace for scene management
+using UnityEngine.SceneManagement;
+using UnityEngine.UI; // ใช้สำหรับ UI
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private bool isPaused;
     [SerializeField] private GameObject PausePanel;
-    
+    [SerializeField] private Button resumeButton;
+    [SerializeField] private Button restartButton;
+    [SerializeField] private Button mainMenuButton;
+
+    void Start()
+    {
+        // ผูกฟังก์ชันกับปุ่ม
+        resumeButton.onClick.AddListener(ResumeGame);
+        restartButton.onClick.AddListener(RestartGame);
+        mainMenuButton.onClick.AddListener(GoToMainMenu);
+    }
+
     void Update()
     {
         if (Input.GetButtonDown("Cancel"))
@@ -33,17 +45,15 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
     }
 
-    // Method to load the main menu scene
-    public void GoToMainMenu()
+    public void RestartGame()
     {
-        Time.timeScale = 1; // Ensure time is resumed when returning to the main menu
-        SceneManager.LoadScene("MainMenu"); // Replace "MainMenu" with the name of your main menu scene
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    // Method to load the PlayGame scene
-    public void GoToPlayGame()
+    public void GoToMainMenu()
     {
-        Time.timeScale = 1; // Ensure time is resumed when returning to the PlayGame scene
-        SceneManager.LoadScene("PlayGame"); // Replace "PlayGame" with the name of your PlayGame scene
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenu");
     }
 }
