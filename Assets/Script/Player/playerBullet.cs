@@ -2,31 +2,43 @@ using UnityEngine;
 
 public class playerBullet : MonoBehaviour
 {
-    
-    public float lifetime;
+
+    public float timeBeforeDisappear;
     public int bulletDamage;
+    public float rotation;
     public float speed;
     private float timer;
     private Vector2 direction;
 
+    private Renderer render;
+    private Color colors;
+
+    private void Start()
+    {
+        render = GetComponent<Renderer>();
+        colors = render.material.color;
+        colors.a = 0.5f;
+        render.material.color = colors;
+    }
+
     public void Initialize(Vector2 direction, float speed)
-        {
-            this.direction = direction;
-            this.speed = speed;
-        }
+    {
+        this.direction = direction;
+        this.speed = speed;
+    }
 
     // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > lifetime )
+        if (timer > timeBeforeDisappear)
         {
             Destroy(gameObject);
-            lifetime = 0;
+            timeBeforeDisappear = 0;
         }
         transform.Translate(direction * speed * Time.deltaTime);
     }
-    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy") || collision.CompareTag("BossEnemy"))
@@ -42,8 +54,9 @@ public class playerBullet : MonoBehaviour
                 Debug.LogError("Cannot decrease health. UnitStats is null.");
             }
             Destroy(gameObject);
-        
-        }else if (collision.CompareTag("BlockBullet"))
+
+        }
+        else if (collision.CompareTag("BlockBullet"))
         {
             Destroy(gameObject);
         }

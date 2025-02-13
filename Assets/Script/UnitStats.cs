@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class UnitStats : MonoBehaviour
 {
@@ -15,13 +14,14 @@ public class UnitStats : MonoBehaviour
     [SerializeField] public float curHP;
     public float CurHP { get { return curHP; } set { curHP = value; } }
 
-    [SerializeField] private float maxHP ;
+    [SerializeField] private float maxHP;
     public float MaxHP { get { return maxHP; } }
 
-    private bool isGameOver;
+    [SerializeField] private bool isGameOver;
     [SerializeField] GameObject gameoverui;
 
-    public TMP_Text HP;
+    public Text HP;
+
     void Awake()
     {
         instance = this;
@@ -50,7 +50,7 @@ public class UnitStats : MonoBehaviour
             live--;
 
             liveUI[live].enabled = false;
-            
+
             gameoverui.SetActive(false);
             curHP = maxHP;
             Time.timeScale = 1;

@@ -1,15 +1,16 @@
 using System.Collections;
 using UnityEngine;
-using TMPro;
+using Unity.UI;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public int score;
     public int kill;
-    public TMP_Text scoreText;
-    public TMP_Text killText;
-    public TMP_Text finalWaveText;
+    public Text scoreText;
+    public Text killText;
+    public Text finalWaveText;
     public WaveController waveController;
     public static int buffTreashold = 5;
 
@@ -79,7 +80,7 @@ public class GameManager : MonoBehaviour
 
     public void CheckForBuff()
     {
-        if(kill % buffTreashold == 0 && kill > 0)
+        if (kill % buffTreashold == 0 && kill > 0)
         {
             // ตรวจสอบว่ามีอินสแตนซ์ของ buffManager หรือไม่
             if (buffManagerInstance != null)

@@ -1,3 +1,6 @@
+using JetBrains.Annotations;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -7,10 +10,10 @@ public class Weapon : MonoBehaviour
     private float timer;
     public float fireRate;
     public float bulletSpeed = 10f;
-    private bool canShoot;
+    public bool canShoot;
     [SerializeField] private int bulletAmount;
     [SerializeField] private float startAngle = 0f, endAngle = 90f;
-    
+
     private Vector2 bulletMoveDirection;
 
     public void Shoot()
@@ -18,8 +21,8 @@ public class Weapon : MonoBehaviour
         if (!canShoot)
         {
             timer += Time.deltaTime;
-            if (timer > fireRate) 
-            { 
+            if (timer > fireRate)
+            {
                 canShoot = true;
                 timer = 0;
             }
@@ -84,7 +87,7 @@ public class Weapon : MonoBehaviour
             }
         }
     }
-    
+
     public void increaseBulletAmount(int amount)
     {
         bulletAmount += amount;
@@ -98,7 +101,7 @@ public class Weapon : MonoBehaviour
     public void increaseFireRate(float amount)
     {
         fireRate = fireRate - amount;
-        if(fireRate < 0.5 )
+        if (fireRate < 0.5)
         {
             fireRate = 0.5f;
         }

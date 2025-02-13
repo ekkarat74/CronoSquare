@@ -5,9 +5,9 @@ using UnityEngine;
 public class invincibleShort : MonoBehaviour
 {
     public float invincibleTime = 1.5f;
-    
+
     Renderer render;
-    
+
     Color colors;
 
     void Start()
@@ -20,8 +20,8 @@ public class invincibleShort : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("BulletEnemy") || collision.gameObject.CompareTag("Enemy"))
-        StartCoroutine(GetEnumerator());
+        if (collision.gameObject.CompareTag("BulletEnemy") || collision.gameObject.CompareTag("Enemy"))
+            StartCoroutine(GetEnumerator());
     }
 
     IEnumerator GetEnumerator()
@@ -34,6 +34,6 @@ public class invincibleShort : MonoBehaviour
         Physics2D.IgnoreLayerCollision(6, 7, false);
         colors.a = 1f;
         render.material.color = colors;
-     }
-    
+    }
+
 }
